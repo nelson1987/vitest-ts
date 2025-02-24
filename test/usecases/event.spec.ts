@@ -1,12 +1,8 @@
 import { describe, expect, it, Mock, vi } from "vitest";
 import eventHandler from "../../src/eventHandler";
 import producer from "../../src/producer";
-vi.mock("../../src/producer", async () => {
-  const originalModule = await vi.importActual("../../src/producer");
-  return {
-    default: vi.fn(originalModule.default as never),
-  };
-});
+
+vi.mock("../../src/producer", { spy: true });
 
 describe("Event Handler", () => {
   const testEvent = "event";
@@ -16,13 +12,13 @@ describe("Event Handler", () => {
   });
 
   it("should return the mocked event when the handler processes a mocked event", () => {
-    (producer as Mock).mockReturnValueOnce("mockedEvent");
+    vi.mocked(producer).mockReturnValueOnce("mockedEvent");
     const result = eventHandler(testEvent);
     expect(result).toEqual("mockedEvent");
   });
 
   it("should return the mocked event when the handler processes a mocked event", () => {
-    (producer as Mock).mockReturnValueOnce("mockedEvent_2");
+    vi.mocked(producer).mockReturnValueOnce("mockedEvent_2");
     const result = eventHandler(testEvent);
     expect(result).toEqual("mockedEvent_2");
   });
