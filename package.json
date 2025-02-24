@@ -1,0 +1,22 @@
+{
+  "name": "clean-arch-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@vitest/coverage-c8": "^0.33.0",
+    "axios": "^1.7.9",
+    "happy-dom": "^17.1.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.1",
+    "vitest": "^3.0.6"
+  }
+}
