@@ -1,19 +1,18 @@
 import { describe, expect, it, vi } from "vitest";
 import eventHandler from "../../src/eventHandler";
-import producer from "../../src/producer";
+import app from "../../src/app";
 
-vi.mock("../../src/producer", { spy: true });
+vi.mock("../../src/eventHandler", { spy: true });
 
-const testEvent = "event";
-describe("Event Handler", () => {
+describe("App", () => {
   it("should return the produced event when the handler processes an event", () => {
-    const result = eventHandler(testEvent);
+    const result = app();
     expect(result).toEqual("event");
   });
 
   it("should return the mocked event when the handler processes a mocked event", () => {
-    vi.mocked(producer).mockReturnValueOnce("mockedEvent");
-    const result = eventHandler(testEvent);
+    vi.mocked(eventHandler).mockReturnValueOnce("mockedEvent");
+    const result = app();
     expect(result).toEqual("mockedEvent");
   });
 });
